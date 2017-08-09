@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class GroupController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $groups = Group::orderBy('updated_at')->get();
     }
 
     /**
@@ -46,7 +56,8 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $group = Group::findOrFail($group->id);
+       // return view('articles.show', compact('article'));
     }
 
     /**
