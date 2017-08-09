@@ -25,9 +25,9 @@
 								<div class="form-group-md{{ $errors->has('email') ? ' has-error' : '' }}">
 									<label>Email</label>
 									<input type="email" name="email" class="form-control">
-									@if ($errors->has('username'))
+									@if ($errors->has('email'))
 										<span class="help-block">
-											<strong>{{ $errors->first('username') }}</strong>
+											<strong>{{ $errors->first('email') }}</strong>
 										</span>
 									@endif
 								</div>
