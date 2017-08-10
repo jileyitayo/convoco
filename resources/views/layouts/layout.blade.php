@@ -59,7 +59,11 @@
     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
     <aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-        <h1 id="fh5co-logo"><a href="{{ url('/') }}">{{ config('app.name', 'convoco') }}</a></h1>
+        <h1 id="fh5co-logo"><a href="{{ url('/') }}">{{ ucwords(config('app.name', 'convoco')) }}</a></h1>
+        @if(!Auth::guest())
+            <h3 class="text-center">{{ ucwords(Auth::user()->username) }}</h3>
+            <hr/>
+        @endif
         <nav id="fh5co-main-menu" role="navigation">
             <ul>
                 @if (Auth::guest())
@@ -69,6 +73,11 @@
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
                             {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                         {{--</a>--}}
+                    <li class="fh5co-active"><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
