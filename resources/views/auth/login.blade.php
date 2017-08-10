@@ -6,6 +6,7 @@
 		<div class="flexslider js-fullheight" style="background-image: url({{ asset('images/img_bg_2.jpg') }});">
 			<div class="row">
 				<div class="login-main">
+					<h1 class="text-center hidden-md hidden-lg" style="color: #ffffff;">{{ ucwords(config('app.name', 'convoco')) }}</h1>
 					<div class="col-md-7">
 						<div class="join-words text-center">
 							<h2>BIG CATCHY TITLE HERE...</h2>

@@ -68,6 +68,8 @@
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
 			<h1 id="fh5co-logo"><a href="index.html">Marble</a></h1>
+			<h3 class="text-center">{{ ucwords(Auth::user()->username) }}</h3>
+			<hr/>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
 					<li class="fh5co-active"><a href="index.html">Home</a></li>
