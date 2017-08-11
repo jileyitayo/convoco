@@ -45,7 +45,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Group::create(Request::all());
     }
 
     /**

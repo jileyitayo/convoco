@@ -12,7 +12,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'groupname', 'groupstatus', 'created_by',
+        'groupname', 'groupdescription', 'groupstatus', 'created_by',
     ];
 
     public function createdby(){
