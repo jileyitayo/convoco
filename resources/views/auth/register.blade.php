@@ -21,10 +21,15 @@
 								<div class="form-group-md{{ $errors->has('username') ? ' has-error' : '' }}">
 									<label for="username">Username</label>
 									<input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+									@if ($errors->has('username'))
+										<span class="help-block">
+											<strong>{{ $errors->first('username') }}</strong>
+										</span>
+									@endif
 								</div>
 								<div class="form-group-md{{ $errors->has('email') ? ' has-error' : '' }}">
 									<label>Email</label>
-									<input type="email" name="email" class="form-control">
+									<input id="email" type="email" name="email" class="form-control" value="{{ old('email') }}" required>
 									@if ($errors->has('email'))
 										<span class="help-block">
 											<strong>{{ $errors->first('email') }}</strong>
@@ -50,7 +55,7 @@
 								</div>
 							</form>
 							<div class="line"></div>
-							<p>Already a member? Click <a href="{{ route('login') }}"> Login</a> to catch up with friends.</p><br/>
+							<p style="color: #000;">Already a member? Click <a href="{{ route('login') }}"> Login</a> to catch up with friends.</p><br/>
 							<small>By clicking "Register", you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</small>
 						</div>
 					</div>
