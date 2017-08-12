@@ -19,13 +19,22 @@
 							<div class="line"></div>
 								<form class="form form-horizontal" method="POST" action="{{ route('login') }}">
 									{{ csrf_field() }}
-									<div class="form-group-md{{ $errors->has('email') ? ' has-error' : '' }}">
-										<label for="email">E-Mail Address</label>
-										<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-										@if ($errors->has('email'))
+									{{--<div class="form-group-md{{ $errors->has('email') ? ' has-error' : '' }}">--}}
+										{{--<label for="email">E-Mail Address</label>--}}
+										{{--<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>--}}
+										{{--@if ($errors->has('email'))--}}
+											{{--<span class="help-block">--}}
+													{{--<strong>{{ $errors->first('email') }}</strong>--}}
+												{{--</span>--}}
+										{{--@endif--}}
+									{{--</div>--}}
+									<div class="form-group-md{{ $errors->has('username') ? ' has-error' : ''}}">
+										<label for="username">Username/Email Address</label>
+										<input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+										@if ($errors->has('username'))
 											<span class="help-block">
-													<strong>{{ $errors->first('email') }}</strong>
-												</span>
+												<strong>{{ $errors->first('username') }}</strong>
+											</span>
 										@endif
 									</div>
 									<div class="form-group-md{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -54,7 +63,7 @@
 									</div>
 								</form>
 							<div class="line"></div>
-							<p>Not a member yet? Click <a href="{{ route('register') }}">Join Now</a> to catch up with friends.</p>
+							<p style="color: #000;">Not a member yet? Click <a href="{{ route('register') }}">Join Now</a> to catch up with friends.</p>
 
 						</div>
 					</div>
