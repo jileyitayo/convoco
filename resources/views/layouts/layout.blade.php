@@ -61,7 +61,10 @@
 
         <h1 id="fh5co-logo"><a href="{{ url('/') }}">{{ ucwords(config('app.name', 'convoco')) }}</a></h1>
         @if(!Auth::guest())
-            <h3 class="text-center">{{ ucwords(Auth::user()->username) }}</h3>
+            <div class="text-center">
+                <img src="{{ asset('images/me.jpg') }}" class="profile-pic img-circle">
+                <p><b>{{ ucwords(Auth::user()->username) }}</b></p>
+            </div>
             <hr/>
         @endif
         <nav id="fh5co-main-menu" role="navigation">
@@ -73,11 +76,11 @@
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
                             {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                         {{--</a>--}}
-                    <li class="fh5co-active"><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="fh5co-active"><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ action('GroupController@index', [Auth::user()->username]) }}">Groups</a></li>
+                    <li><a href="{{ action('HomeController@show', [Auth::user()->username]) }}">Profile</a></li>
+                    {{--<li><a href="about.html">About</a></li>--}}
+                    {{--<li><a href="contact.html">Contact</a></li>--}}
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -90,11 +93,6 @@
                         </form>
                     </li>
                 @endif
-                {{--<li class="fh5co-active"><a href="index.html">Home</a></li>--}}
-                {{--<li><a href="blog.html">Blog</a></li>--}}
-                {{--<li><a href="portfolio.html">Portfolio</a></li>--}}
-                {{--<li><a href="about.html">About</a></li>--}}
-                {{--<li><a href="contact.html">Contact</a></li>--}}
             </ul>
         </nav>
 
