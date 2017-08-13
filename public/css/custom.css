@@ -122,10 +122,15 @@
 }
 
 /*=== index page ===*/
-#fh5co-main h2, #fh5co-main p {
+#fh5co-main .headh2, #fh5co-main .headp {
 	color: #f5f5f5;
 }
 
-#fh5co-main p {
+#fh5co-main .headp {
 	font-style: italic;
+}
+
+#fh5co-main .fh5co-layout {
+	min-height: 600px;
+	margin-bottom: 0;
 }
