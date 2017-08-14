@@ -4,14 +4,13 @@
 @endif
 @section('styles')
 	<!-- Semantic Icon -->
-	<link rel="stylesheet" href="semantic/components/icon.min.css">
+	<link rel="stylesheet" href="{{ asset('semantic/components/icon.min.css') }}">
 	<!-- Semantic  -->
-	<link rel="stylesheet" href="semantic/css/semantic.min.css">
+	<link rel="stylesheet" href="{{ asset('semantic/css/semantic.min.css') }}">
 @endsection
 @section('content')
 	<div id="fh5co-main">
-		<div class="fh5co-narrow-content">
-
+		<div class="fh5co-narrow-content" style="min-height: 100vh;">
 			<div class="row">
 				@if(isset($usergroups) && $usergroups == null)
 					<div class="col-md-offset-4 col-md-4 fh5co-add-group text-center">
@@ -22,18 +21,18 @@
 						<p>>> Test <a href="#" data-toggle="modal" data-target="#inviteModal">"Invite"</a> link</p>
 					</div>
 				@else
-					<div class="row" style="padding: 0px 15px 0px 15px"><button class="ui blue basic button float-right" data-toggle="modal" data-target="#addGroup"><span class="icon-file-add"></span> Add Group</button><br/><br/></div>
+					<div class="row" style="padding: 0px 15px 0px 15px"><button class="ui blue basic button float-right" data-toggle="modal" data-target="#addGroup"><span class="icon-file-add"></span> Create Group</button><br/><br/></div>
 					@foreach ($usergroups as $usergroup)
-						<div style="margin-bottom:5px; width: 100%; height: 240px; padding: 0px 15px 0px 15px; background-color: #dddddd;">
+						<div style="margin-bottom:5px; width: 100%; height: auto; min-height: 240px; padding: 0px 15px 0px 15px; background-color: #dddddd;">
 							<div class="row" style="height: inherit">
-								<div id="{{ $usergroup['id'] }}" class="col-md-6 col-sm-6 col-xs-6" style="background-image: url({{ asset('images/people.jpg') }}); background-position: center; width: 50%; height: inherit">
+								<div id="{{ $usergroup['id'] }}" class="col-md-6 col-sm-6 col-xs-6" style="height: 275px; min-height: 240px; background-size: cover; background-image: url({{ asset('images/me.jpg') }}); background-position: center; width: 50%;">
 
 								</div>
 
 								<div class="col-md-6 col-sm-6 col-xs-6" style="font-size: 15px;text-align: center; padding: 15px; padding-bottom: 5px; color: #000;">
 									<a href="{{ route("showGroup", ['groupid' => $usergroup['id']]) }}">
 										<h2>{{ ucwords($usergroup['groupname']) }}</h2>
-										<p style="color: #000;">{{ $usergroup['groupdescription'] }}</p>
+										<p style="height: 75px;padding: 0 10px 0 10px; color: #000;">{{ $usergroup['groupdescription'] }}</p>
 										<label >Members</label><br/>
 										<label>30</label><br/>
 									</a>
@@ -43,6 +42,7 @@
 								</a>
 							</div>
 						</div>
+						<br/>
 					@endforeach
 				@endif
 			</div>
@@ -136,5 +136,5 @@
         $('input#name, textarea#desc').characterlimit();
 	</script>
 	<!-- Semantic -->
-	<script src="semantic/js/semantic.min.js"></script>
+	<script src="{{ asset('semantic/js/semantic.min.js') }}"></script>
 @endsection
