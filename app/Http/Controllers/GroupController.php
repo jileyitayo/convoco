@@ -97,9 +97,11 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
+//    public function update($groupid)
     public function update(Request $request, Group $group)
     {
-        //
+        redirect('group/');
+        echo "<script>alert(".$group['groupname'].")</script>";
     }
 
     /**
