@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <!-- Flexslider  -->
     <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
+
+    @yield('styles')
+
     <!-- Theme style  -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Custom style  -->
@@ -76,8 +79,8 @@
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
                             {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                         {{--</a>--}}
-                    <li class="fh5co-active"><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ action('GroupController@index', [Auth::user()->username]) }}">Groups</a></li>
+                    {{--<li class="fh5co-active"><a href="{{ route('home') }}">Home</a></li>--}}
+                    <li class="fh5co-active"><a href="{{ action('GroupController@index', [Auth::user()->username]) }}">Groups</a></li>
                     <li><a href="{{ action('HomeController@show', [Auth::user()->username]) }}">Profile</a></li>
                     {{--<li><a href="about.html">About</a></li>--}}
                     {{--<li><a href="contact.html">Contact</a></li>--}}
@@ -122,7 +125,7 @@
     <!-- Flexslider -->
     <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
 
-
+    @yield('scripts')
     <!-- MAIN JS -->
     <script src="{{ asset('js/main.js') }}"></script>
 </body>

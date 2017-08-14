@@ -18,6 +18,17 @@
 
 Route::get('/', 'HomeController@index');
 
+
+//Route::get('/groups/{username}', 'GroupController@index');
+
+Route::get('/index1', function() {
+    return view('index1');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{username}', 'HomeController@show');
+Route::get('/groups/', 'GroupController@index');
+Route::post('/groups/', 'GroupController@store');
+Route::get('/groups/{groupid}', 'GroupController@show')->name('showGroup');

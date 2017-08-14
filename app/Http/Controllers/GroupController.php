@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -24,7 +26,10 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::orderBy('updated_at')->get();
+        $authuser = Auth::user();
+        $usergroups = $authuser->groups()->latest('created_at')->get()->toArray();
+        return view('groups', compact('usergroups'));
+//        return response()->json($usergroups);
     }
 
     /**
@@ -45,7 +50,21 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        Group::create(Request::all());
+        $user =  Auth::user();
+//        if($request->groupname == null || empty($request->groupname)){
+//            $message = [
+//                'message' => "Group name required",
+//                'alert' => "danger",
+//            ];
+//
+//            return view('groups', compact('message'));
+//        }
+        $this->validate($request, [
+            'groupname' => 'required',
+            'groupdescription' => 'max:151',
+        ]);
+        $user->groups()->save(new Group($request->all()));
+        return redirect('groups');
     }
 
     /**
@@ -54,10 +73,10 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show($groupid)
     {
-        $group = Group::findOrFail($group->id);
-       // return view('articles.show', compact('article'));
+        $group = Group::findOrFail($groupid);
+        return view('group', compact('group'));
     }
 
     /**

@@ -2,6 +2,12 @@
 @if(Auth::guest())
 	{{ redirect()->route('login') }}
 @endif
+@section('styles')
+	<!-- Semantic Icon -->
+	<link rel="stylesheet" href="semantic/components/icon.min.css">
+	<!-- Semantic  -->
+	<link rel="stylesheet" href="semantic/css/semantic.min.css">
+@endsection
 @section('content')
 <div id="fh5co-main">
 	<aside id="fh5co-hero" class="js-fullheight">
@@ -170,4 +176,8 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('scripts')
+	<!-- Semantic -->
+	<script src="semantic/js/semantic.min.js"></script>
 @endsection
