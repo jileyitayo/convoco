@@ -91,7 +91,9 @@
 						</div>
 						<hr/>
 						<div class="form-group text-center">
-							<button type="submit" class="btn btn-lg btn-success"><b>Create Group</b></button>
+							<button type="button" id="savegroup" class="btn btn-lg btn-success"><b>Create Group</b></button>
+							<input type="hidden" id="groupid" name="groupid" value="{{ $group['id'] }}">
+							<input type="hidden" id="state" value="create">
 						</div>
 					</form>
       			</div>
@@ -127,6 +129,7 @@
     		</div>
   		</div>
 	</div>
+	<meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 
 @section('scripts')
@@ -137,4 +140,7 @@
 	</script>
 	<!-- Semantic -->
 	<script src="{{ asset('semantic/js/semantic.min.js') }}"></script>
+@endsection
+@section('appjs')
+	<script src="{{ asset('js/app.js') }}"></script>
 @endsection

@@ -118,6 +118,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <!-- jQuery Easing -->
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+    <!-- Semantic -->
+    <script src="{{ asset('semantic/js/semantic.min.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Waypoints -->
@@ -128,6 +130,6 @@
     @yield('scripts')
     <!-- MAIN JS -->
     <script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+    @yield('appjs')
 </body>
 </html>

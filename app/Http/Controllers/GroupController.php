@@ -98,10 +98,16 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
 //    public function update($groupid)
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $groupid)
     {
-        redirect('group/');
-        echo "<script>alert(".$group['groupname'].")</script>";
+        $updates =  $request->all();
+        $group = Group::find($groupid);
+
+        $group->groupname = $updates['groupname'];
+        $group->groupdescription = $updates['groupdescription'];
+
+        $group->save();
+        return response()->json($group);
     }
 
     /**

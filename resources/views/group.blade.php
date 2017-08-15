@@ -17,15 +17,15 @@
             <div class="row">
                 <div style="width: 100%; height: 200px;  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87) ),url({{ asset('images/people.jpg') }}); background-position: top center; padding-top: 15px; text-align: center; color: #ffffff;">
 
-                    <h1 style="color: #ffffff;">{{ ucwords($group['groupname']) }}</h1>
+                    <h1 style="color: #ffffff;" id="groupname">{{ ucwords($group['groupname']) }}</h1>
                     <div style="font-size: 15px;">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-6">
-                                <p style=" height: 75px; padding: 0 25px 0 25px;">{{ $group['groupdescription'] }}</p>
+                                <p style=" height: 75px; padding: 0 25px 0 25px;" id="groupdescription">{{ $group['groupdescription'] }}</p>
                             </div>
                         </div>
                         <div style="float: left; margin-left: 3%;font-size: 20px;">
-                            <label style="color: #e5ffc5;">Members</label>&nbsp;|&nbsp;<label><b>30</b></label>
+                            <label style="color: #e5ffc5;">Members</label>&nbsp;|&nbsp;<label><b id="groupmembers">30</b></label>
                         </div>
                         <div style="float: right; font-size: 30px;">
                             <div class="col-md-12">
@@ -139,8 +139,9 @@
                     <h4 class="modal-title">Edit {{ $group['groupname'] }}</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form" action="{{ action('GroupController@update') }}" method="POST">
-                        {{ csrf_field() }}
+                    <div class="form">
+{{--                    <form class="form" action="{{ action('GroupController@update') }}" method="POST">--}}
+                        {{--{{ csrf_field() }}--}}
                         <div class="form-group-md{{ $errors->has('groupname') ? ' has-error' : ''}}">
                             <label>Group Name</label>
                             <input type="text" name="groupname" id="name" placeholder="Choose a Group Name" value="{{ $group['groupname'] }}" class="form-control" required data-maxchar="30">
@@ -169,9 +170,12 @@
                         </div>
                         <hr/>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-lg btn-success"><b>Update Group</b></button>
+                            <button type="button" id="savegroup" class="btn btn-lg btn-success"><b>Update Group</b></button>
+                            <input type="hidden" id="groupid" name="groupid" value="{{ $group['id'] }}">
+                            <input type="hidden" id="state" value="update">
                         </div>
-                    </form>
+                    </div>
+                    {{--</form>--}}
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -206,7 +210,7 @@
         </div>
     </div>
 </div>
-
+<meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
 
 @section('scripts')
@@ -216,5 +220,9 @@
         $('input#name, textarea#desc').characterlimit();
     </script>
     <!-- Semantic -->
-    <script src="{{ asset('semantic/js/semantic.min.js') }}"></script>
+    {{--<script src="{{ asset('semantic/js/semantic.min.js') }}"></script>--}}
+@endsection
+
+@section('appjs')
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection
