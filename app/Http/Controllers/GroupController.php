@@ -64,6 +64,9 @@ class GroupController extends Controller
             'groupdescription' => 'max:151',
         ]);
         $user->groups()->save(new Group($request->all()));
+        //add user as a member of the group
+
+
         return redirect('groups');
     }
 

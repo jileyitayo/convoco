@@ -18,7 +18,7 @@
 							<img src="{{ asset('images/add.jpg') }}" class="img-circle" data-toggle="modal" data-target="#addGroup">
 						</div>
 						<p><br><b>Click "Add Group" to invite family and friends.</b></p>
-						<p>>> Test <a href="#" data-toggle="modal" data-target="#inviteModal">"Invite"</a> link</p>
+						{{--<p>>> Test <a href="#" data-toggle="modal" data-target="#inviteModal">"Invite"</a> link</p>--}}
 					</div>
 				@else
 					<div class="row" style="padding: 0px 15px 0px 15px"><button class="ui blue basic button float-right" data-toggle="modal" data-target="#addGroup"><span class="icon-file-add"></span> Create Group</button><br/><br/></div>
@@ -39,7 +39,7 @@
 
 									<div style="float: right; font-size: 30px; color: #000;"><a href="" ><span class="icon-pencil"></span></a> <a href="" ><span class="icon-mail5"></span></a> <a href=""><span class="icon-trash"></span></a></div>
 								</div>
-								</a>
+								{{--</a>--}}
 							</div>
 						</div>
 						<br/>
