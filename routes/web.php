@@ -32,6 +32,11 @@ Route::get('/profile/{username?}', 'HomeController@show');
 Route::get('/groups/', 'GroupController@index');
 Route::post('/groups/', 'GroupController@store');
 
+Route::get('/feed/', 'HomeController@getfeed');
+Route::post('/feed/', 'HomeController@postfeed');
+
+Route::post('/invites/', 'HomeController@sendInvite');
+
 Route::put('/groups/{groupid?}', 'GroupController@update');
 Route::get('/groups/{groupid?}', 'GroupController@show')->name('showGroup');
 

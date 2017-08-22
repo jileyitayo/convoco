@@ -23,9 +23,9 @@
 				@else
 					<div class="row" style="padding: 0px 15px 0px 15px"><button class="ui blue basic button float-right" data-toggle="modal" data-target="#addGroup"><span class="icon-file-add"></span> Create Group</button><br/><br/></div>
 					@foreach ($usergroups as $usergroup)
-						<div style="margin-bottom:5px; width: 100%; height: auto; min-height: 240px; padding: 0px 15px 0px 15px; background-color: #dddddd;">
+						<div style="margin-bottom:5px; width: 100%; {{-- min-height: 240px; --}} height: auto; min-height: 200px; padding: 0px 15px 0px 15px; background-color: #dddddd;">
 							<div class="row" style="height: inherit">
-								<div id="{{ $usergroup['id'] }}" class="col-md-6 col-sm-6 col-xs-6" style="height: 275px; min-height: 240px; background-size: cover; background-image: url({{ asset('images/me.jpg') }}); background-position: center; width: 50%;">
+								<div id="{{ $usergroup['id'] }}" class="col-md-6 col-sm-6 col-xs-6" {{-- height: 275px; min-height: 240px; --}} style="height: 240px; min-height: 200px; background-size: cover; background-image: url({{ asset('images/hands.jpg') }}); background-position: center; width: 50%;">
 
 								</div>
 
@@ -36,8 +36,7 @@
 										<label >Members</label><br/>
 										<label>30</label><br/>
 									</a>
-
-									<div style="float: right; font-size: 30px; color: #000;"><a href="" ><span class="icon-pencil"></span></a> <a href="" ><span class="icon-mail5"></span></a> <a href=""><span class="icon-trash"></span></a></div>
+									{{--<div style="float: right; font-size: 30px; color: #000;"><a id="editg" data-id="{{ $usergroup['id'] }}" href="#editGroup" data-toggle="modal"  data-target="#editGroup"><span class="icon-pencil"></span></a> <a href="#inviteModal" data-toggle="modal"  data-target="#inviteModal" ><span class="icon-mail5"></span></a> <a href=""><span class="icon-trash"></span></a></div>--}}
 								</div>
 								{{--</a>--}}
 							</div>
@@ -91,9 +90,9 @@
 						</div>
 						<hr/>
 						<div class="form-group text-center">
-							<button type="button" id="savegroup" class="btn btn-lg btn-success"><b>Create Group</b></button>
-							<input type="hidden" id="groupid" name="groupid" value="{{ $group['id'] }}">
-							<input type="hidden" id="state" value="create">
+							<button type="submit" class="btn btn-lg btn-success"><b>Create Group</b></button>
+							{{--<input type="hidden" id="groupid" name="groupid" value="{{ $group['id'] }}">--}}
+							{{--<input type="hidden" id="state" value="create">--}}
 						</div>
 					</form>
       			</div>
@@ -101,6 +100,61 @@
       			</div>
     		</div>
   		</div>
+	</div>
+
+	<!-- Modal for editing the Group name and description -->
+	<div id="editGroup" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-md">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id="g-title" class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<div class="form">
+						{{--                    <form class="form" action="{{ action('GroupController@update') }}" method="POST">--}}
+						{{--{{ csrf_field() }}--}}
+						<div class="form-group-md{{ $errors->has('groupname') ? ' has-error' : ''}}">
+							<label>Group Name</label>
+							<input type="text" name="groupname" id="g-name" placeholder="Choose a Group Name" value="" class="form-control" required data-maxchar="30">
+							<span class="pull-right">
+				                <em>characters allowed: </em>
+				                <em class="character-counter"></em>
+				            </span>
+							@if ($errors->has('groupname'))
+								<span class="help-block">
+									<strong>{{ $errors->first('groupname') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="form-group-md{{ $errors->has('groupdescription') ? ' has-error' : ''}}">
+							<label>Group Description</label>
+							<textarea name="groupdescription" id="g-desc" placeholder="Enter a description" class="form-control"  data-maxchar="150"></textarea>
+							<span class="pull-right">
+				                <em>characters allowed: </em>
+				                <em class="character-counter"></em>
+				            </span>
+							@if ($errors->has('groupdescription'))
+								<span class="help-block">
+									<strong>{{ $errors->first('groupdescription') }}</strong>
+								</span>
+							@endif
+						</div>
+						<hr/>
+						<div class="form-group text-center">
+							<button type="button" id="savegroup" class="btn btn-lg btn-success"><b>Update Group</b></button>
+							<input type="hidden" id="groupid" name="groupid" value="">
+							<input type="hidden" id="state" value="update">
+						</div>
+					</div>
+					{{--</form>--}}
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Modal for inviting new members -->
@@ -114,10 +168,16 @@
 			        <h4 class="modal-title">New Invite</h4>
       			</div>
       			<div class="modal-body">
-        			<form>
-        				<div class="form-group">
+					<form class="form" action="{{ action('HomeController@sendInvite') }}" method="POST">
+						{{ csrf_field() }}
+        				<div class="form-group-md{{ $errors->has('email') ? ' has-error' : ''}}">
         					<label>Email</label>
         					<input type="text" name="email" placeholder="Enter invitee's email" class="form-control">
+							@if ($errors->has('email'))
+								<span class="help-block">
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
+							@endif
         				</div>
         				<div class="form-group text-center">
         					<button type="submit" name="create" class="btn btn-lg btn-success"><b>Invite</b></button>

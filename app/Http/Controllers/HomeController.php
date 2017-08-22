@@ -31,4 +31,16 @@ class HomeController extends Controller
         $userprofile = User::where('username',$username)->get();
         return view('profile', compact('userprofile'));
     }
+    
+    public function getfeed(){
+        return view('feed');
+    }
+
+    public function postfeed(){
+
+    }
+    
+    public function sendInvite($email){
+        return view('feed');
+    }
 }

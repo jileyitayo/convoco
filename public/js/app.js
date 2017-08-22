@@ -4,10 +4,45 @@
 ;(function () {
     var url = "/groups";
 
+    function ucaps(str) {
+        str = str.toLowerCase().split(' ');                // will split the string delimited by space into an array of words
+
+        for(var i = 0; i < str.length; i++){               // str.length holds the number of occurrences of the array...
+            str[i] = str[i].split('');                    // splits the array occurrence into an array of letters
+            str[i][0] = str[i][0].toUpperCase();          // converts the first occurrence of the array to uppercase
+            str[i] = str[i].join('');                     // converts the array of letters back into a word.
+        }
+        return str.join(' ');                              //  converts the array of words back to a sentence.
+    }
    
     // This funciton is used to groups
     var groups = function() {
         var state = $('#state').val();
+
+        // groups page editing
+        //get groupid
+        $('#editg').on('click', function(){
+            alert($(this).data('id'));
+
+            $.get(url + '/' + task_id, function (data) {
+                //success data
+                console.log(data);
+                $('#task_id').val(data.id);
+                $('#task').val(data.task);
+                $('#description').val(data.description);
+                $('#btn-save').val("update");
+
+                $('#myModal').modal('show');
+            });
+            
+            $('#g-name').val('');
+            $('#g-desc').html('');
+            // $("#cafeId").val($(this).data('id'));
+        });
+
+
+
+
         //display modal form for task editing
         // $('#savegroup').on('click' ,function(){
         //     var task_id = $(this).val();
@@ -64,7 +99,7 @@
                     console.log(data);
                     // alert(data.groupname+ ' ' + data.groupdescription);
                     if (state == "update"){
-                        $('#groupname').html(data.groupname);
+                        $('#groupname').html(ucaps(data.groupname));
                         $('#groupdescription').html(data.groupdescription);
                     }else{
 

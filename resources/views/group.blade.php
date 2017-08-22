@@ -194,10 +194,16 @@
                     <h4 class="modal-title">New Invite</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
+                    <form class="form" action="{{ action('HomeController@sendInvite') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group-md{{ $errors->has('email') ? ' has-error' : ''}}">
                             <label>Email</label>
                             <input type="text" name="email" placeholder="Enter invitee's email" class="form-control">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
+                            @endif
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" name="create" class="btn btn-lg btn-success"><b>Invite</b></button>

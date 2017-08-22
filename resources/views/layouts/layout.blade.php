@@ -64,10 +64,12 @@
 
         <h1 id="fh5co-logo"><a href="{{ url('/') }}">{{ ucwords(config('app.name', 'convoco')) }}</a></h1>
         @if(!Auth::guest())
+            <a href="{{ action('HomeController@show', [Auth::user()->username]) }}">
             <div class="text-center">
-                <img src="{{ asset('images/me.jpg') }}" class="profile-pic img-circle">
-                <p><b>{{ ucwords(Auth::user()->username) }}</b></p>
+                <img src="{{ asset('images/IMG_1166.jpg') }}" class="profile-pic img-circle">
+                <p><b style="font-weight: bolder;">{{ ucwords(Auth::user()->username) }}</b></p>
             </div>
+            </a>
             <hr/>
         @endif
         <nav id="fh5co-main-menu" role="navigation">
@@ -80,8 +82,10 @@
                             {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
                         {{--</a>--}}
                     {{--<li class="fh5co-active"><a href="{{ route('home') }}">Home</a></li>--}}
+                    <li><a href="{{ action('HomeController@getfeed', [Auth::user()->username]) }}">Feed</a></li>
                     <li class="fh5co-active"><a href="{{ action('GroupController@index', [Auth::user()->username]) }}">Groups</a></li>
                     <li><a href="{{ action('HomeController@show', [Auth::user()->username]) }}">Profile</a></li>
+
                     {{--<li><a href="about.html">About</a></li>--}}
                     {{--<li><a href="contact.html">Contact</a></li>--}}
                     <li>
